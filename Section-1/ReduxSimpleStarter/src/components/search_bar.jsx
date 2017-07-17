@@ -12,7 +12,9 @@ class SearchBar extends React.Component {
     }
     render() {
         return (
-            <input type="text" value={this.state.term} onChange={this.handleChange} />
+            <div className="search-bar">
+            <input type="text" value={this.state.term} onChange={this.handleChange} />            
+            </div>
         )
     }
 }
