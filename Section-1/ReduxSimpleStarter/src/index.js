@@ -15,13 +15,19 @@ class App extends React.Component {
       videos: [],
       selectedVideo: null
     }
+    this.videoSearch("Monica Bellucci");
+    // this.handleVideoSelect = this.handleVideoSelect.bind(this);
+  }
 
+  videoSearch = searchTerm => {
     YTSearch({ key: API_KEY, term: searchTerm }, data => {
       console.log(data);
       this.setState({ videos: data, selectedVideo: data[0] });
     })
+  }
 
-    // this.handleVideoSelect = this.handleVideoSelect.bind(this);
+  handleSearch = term => {
+    this.videoSearch(term);
   }
 
   handleVideoSelect = userVideo => {
@@ -31,7 +37,7 @@ class App extends React.Component {
   render() {
     return (
     <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={this.handleSearch}/>
         <VideoDetail video={this.state.selectedVideo} />  
         <VideoList videos={this.state.videos} onVideoSelect={this.handleVideoSelect}/>
     </div>
